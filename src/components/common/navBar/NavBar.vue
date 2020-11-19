@@ -22,14 +22,21 @@
   .nav-bar{
     display: flex;
     line-height: 44px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
     /*background: lightblue;*/
   }
   .left,.right{
     width: 60px;
-    /*background: aquamarine;*/
+    /*background: lightcoral;*/
   }
   .center{
     flex: 1;
+    /*background: red;*/
+    color: #fff;
     text-align: center;
   }
 </style>

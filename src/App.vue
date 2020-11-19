@@ -1,18 +1,20 @@
 <template>
   <div id="app">
+    <router-view/>
     <Tabbar></Tabbar>
   </div>
-  <router-view/>
+
 </template>
 <script>
   import Tabbar from "./components/common/tabbar/Tabbar";
+
   export default {
-    name:'App',
-    components:{
+    name: 'App',
+    components: {
       Tabbar
     }
   }
 </script>
 <style>
-@import "assets/css/base.css";
+  @import "assets/css/base.css";
 </style>
