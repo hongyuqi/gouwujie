@@ -1,5 +1,10 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+// Vue.use(VueRouter)
+
 const Category = () => import('../views/category/Category')
 const Home = () => import('../views/home/Home')
 const Profile = () => import('../views/profile/Profile')
@@ -118,6 +123,8 @@ const routes = [
     ]
   }
 ]
+
+
 
 const router = createRouter({
   history: createWebHistory(),

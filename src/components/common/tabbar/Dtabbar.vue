@@ -36,7 +36,7 @@
     <div class="txt-wrapper">
       <TabBarItem path="/shopCart" active-color="hotpink">
         <template v-slot:slot-text>
-          <div class="txt cart">加入购物车</div>
+          <div class="txt cart" @click="addClick">加入购物车</div>
         </template>
       </TabBarItem>
       <TabBarItem path="/profile" active-color="hotpink">
@@ -51,10 +51,17 @@
 
 <script>
   import TabBarItem from './Tab-bar-item'
+  import {INCREMENT} from "../../../store/mutation-types";
+
   export default {
     name: "Dtabbar",
     components:{
       TabBarItem
+    },
+    methods:{
+      addClick(){
+        this.$store.commit(INCREMENT)
+      }
     }
   }
 </script>

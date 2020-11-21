@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>图书购物车</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #app{
+      width: 900px;
+      height: 500px;
+      margin: 50px auto 0;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <h1>图书购物车</h1>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th></th>
+      <th>书籍名称</th>
+      <th>出版日期</th>
+      <th>价格</th>
+      <th>购买数量</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <template v-for="(item,index) in books">
+      <tr>
+        <td>{{index+1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.date}}</td>
+        <td>￥{{item.price | numFilter}}</td>
+        <td>
+          <button @click="decrement(index)">-</button>
+          <span>{{item.counter}}</span>
+          <button @click="increment(index)">+</button>
+        </td>
+        <td>
+          <button @click="remove(index)">移除</button>
+        </td>
+      </tr>
+    </template>
+    </tbody>
+  </table>
+  <h3 v-if="books.length!=0">总价：￥{{sum() | numFilter}}</h3>
+  <h3 v-else>暂无商品</h3>
+</div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        books:[
+          {id:1,name:'《遥远的救世主》',date:2006,price:45,author:'豆豆',counter:1},
+          {id:2,name:'《三体》',date:2006,price:89,author:'刘慈欣',counter:1},
+          {id:3,name:'《人类简史》',date:2006,price:101,author:'格瓦纳',counter:1}
+        ],
+      },
+      methods: {
+        increment(index){
+          this.books[index].counter++
+        },
+        decrement(index){
+          if (this.books[index].counter<=1){
+            this.books[index].counter=1
+          }else{
+            this.books[index].counter--
+          }
+        },
+        remove(index){
+          this.books.splice(index,1)
+          console.log(this.index)
+        },
+        sum(){
+          var sum=0;
+          for(var i=0;i<this.books.length;i++){
+            sum += this.books[i].price*this.books[i].counter
+          }
+          return sum
+        }
+      },
+      filters: {
+        numFilter (value) {
+          // 截取当前数据到小数点后两位
+          let realVal = parseFloat(value).toFixed(2)
+          return realVal
+        }
+      }
+    })
+  </script>
+</body>
+</html>
